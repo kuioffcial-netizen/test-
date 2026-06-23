@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Shorya's Website</title>
+<title>Rainbow Login</title>
 
 <style>
 body{
@@ -10,23 +10,22 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    flex-direction:column;
+    font-family:Arial;
     color:white;
-    font-family:Arial,sans-serif;
 
     background: linear-gradient(
-        270deg,
-        rgb(255,0,0),
-        rgb(255,127,0),
-        rgb(255,255,0),
-        rgb(0,255,0),
-        rgb(0,0,255),
-        rgb(75,0,130),
-        rgb(148,0,211)
+        -45deg,
+        #ff0000,
+        #ff7f00,
+        #ffff00,
+        #00ff00,
+        #00ffff,
+        #0000ff,
+        #8b00ff
     );
 
-    background-size: 1400% 1400%;
-    animation: rainbow 10s ease infinite;
+    background-size:400% 400%;
+    animation:rainbow 8s ease infinite;
 }
 
 @keyframes rainbow{
@@ -35,21 +34,84 @@ body{
     100%{background-position:0% 50%;}
 }
 
-h1{
-    font-size:60px;
-    text-shadow:0 0 20px white;
+.box{
+    background:rgba(0,0,0,0.4);
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+    backdrop-filter:blur(10px);
 }
 
-p{
-    font-size:25px;
+input{
+    width:250px;
+    padding:10px;
+    margin:5px;
+    border:none;
+    border-radius:10px;
+}
+
+button{
+    padding:10px 20px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    margin:5px;
+}
+
+#welcome{
+    font-size:30px;
+    display:none;
 }
 </style>
-
 </head>
+
 <body>
 
-<h1>🌈 Welcome Shorya 🌈</h1>
-<p>My GitHub Website</p>
+<div class="box">
+
+<h1>🌈 Rainbow Login 🌈</h1>
+
+<div id="auth">
+<input id="username" placeholder="Username"><br>
+<input id="password" type="password" placeholder="Password"><br>
+
+<button onclick="createAccount()">Create Account</button>
+<button onclick="login()">Login</button>
+</div>
+
+<div id="welcome"></div>
+
+</div>
+
+<script>
+function createAccount(){
+    let user=document.getElementById("username").value;
+    let pass=document.getElementById("password").value;
+
+    localStorage.setItem("user",user);
+    localStorage.setItem("pass",pass);
+
+    alert("Account Created!");
+}
+
+function login(){
+    let user=document.getElementById("username").value;
+    let pass=document.getElementById("password").value;
+
+    if(
+        user===localStorage.getItem("user") &&
+        pass===localStorage.getItem("pass")
+    ){
+        document.getElementById("auth").style.display="none";
+        document.getElementById("welcome").style.display="block";
+        document.getElementById("welcome").innerHTML=
+        "Welcome, "+user+" 🚀";
+    }
+    else{
+        alert("Wrong Username or Password");
+    }
+}
+</script>
 
 </body>
 </html>
