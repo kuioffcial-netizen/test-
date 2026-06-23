@@ -2,21 +2,54 @@
 <html>
 <head>
 <title>Shorya's Website</title>
+
 <style>
 body{
-    background: linear-gradient(45deg, red, orange, yellow, green, blue, purple);
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
     color:white;
-    text-align:center;
-    font-family:Arial;
+    font-family:Arial,sans-serif;
+
+    background: linear-gradient(
+        270deg,
+        rgb(255,0,0),
+        rgb(255,127,0),
+        rgb(255,255,0),
+        rgb(0,255,0),
+        rgb(0,0,255),
+        rgb(75,0,130),
+        rgb(148,0,211)
+    );
+
+    background-size: 1400% 1400%;
+    animation: rainbow 10s ease infinite;
 }
+
+@keyframes rainbow{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
 h1{
-    margin-top:200px;
     font-size:60px;
+    text-shadow:0 0 20px white;
+}
+
+p{
+    font-size:25px;
 }
 </style>
+
 </head>
 <body>
-<h1>Welcome to Shorya's Website 🚀</h1>
-<p>My first GitHub website!</p>
+
+<h1>🌈 Welcome Shorya 🌈</h1>
+<p>My GitHub Website</p>
+
 </body>
 </html>
