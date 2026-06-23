@@ -1,7 +1,8 @@
+```html
 <!DOCTYPE html>
 <html>
 <head>
-<title>Shorya Login</title>
+<title>Welcome</title>
 
 <style>
 *{
@@ -100,7 +101,7 @@ button:hover{
 <div class="box">
 
 <div id="loginBox">
-<h1>Login</h1>
+<h1>Welcome</h1>
 
 <input type="text" id="username" placeholder="Username">
 <input type="password" id="password" placeholder="Password">
@@ -135,7 +136,7 @@ function login(){
         document.getElementById("loginBox").style.display="none";
 
         document.getElementById("welcome").style.display="block";
-        document.getElementById("welcome").innerHTML=
+        document.getElementById("welcome").innerHTML =
         "Welcome " + user + " 👋";
     }
     else{
@@ -146,3 +147,4 @@ function login(){
 
 </body>
 </html>
+```
