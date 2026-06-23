@@ -1,66 +1,96 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Rainbow Login</title>
+<title>Shorya Login</title>
 
 <style>
-body{
+*{
     margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
     height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    font-family:Arial;
-    color:white;
-
-    background: linear-gradient(
-        -45deg,
-        #ff0000,
-        #ff7f00,
-        #ffff00,
-        #00ff00,
-        #00ffff,
-        #0000ff,
-        #8b00ff
-    );
-
-    background-size:400% 400%;
-    animation:rainbow 8s ease infinite;
-}
-
-@keyframes rainbow{
-    0%{background-position:0% 50%;}
-    50%{background-position:100% 50%;}
-    100%{background-position:0% 50%;}
+    background:#111;
 }
 
 .box{
-    background:rgba(0,0,0,0.4);
+    width:350px;
     padding:30px;
+    background:#1e1e1e;
     border-radius:20px;
     text-align:center;
-    backdrop-filter:blur(10px);
+    animation:pop 0.8s ease;
+    box-shadow:0 0 30px rgba(255,255,255,0.1);
+}
+
+@keyframes pop{
+    from{
+        opacity:0;
+        transform:scale(0.7);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+h1{
+    color:white;
+    margin-bottom:20px;
 }
 
 input{
-    width:250px;
-    padding:10px;
-    margin:5px;
+    width:100%;
+    padding:12px;
+    margin:8px 0;
     border:none;
     border-radius:10px;
+    background:#333;
+    color:white;
 }
 
 button{
-    padding:10px 20px;
+    width:100%;
+    padding:12px;
+    margin-top:10px;
     border:none;
     border-radius:10px;
+    background:#4CAF50;
+    color:white;
     cursor:pointer;
-    margin:5px;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+#createBtn{
+    background:#2196F3;
 }
 
 #welcome{
-    font-size:30px;
     display:none;
+    color:white;
+    font-size:28px;
+    animation:slide 1s ease;
+}
+
+@keyframes slide{
+    from{
+        opacity:0;
+        transform:translateY(-30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 </style>
 </head>
@@ -69,13 +99,13 @@ button{
 
 <div class="box">
 
-<h1>🌈 Rainbow Login 🌈</h1>
+<div id="loginBox">
+<h1>Login</h1>
 
-<div id="auth">
-<input id="username" placeholder="Username"><br>
-<input id="password" type="password" placeholder="Password"><br>
+<input type="text" id="username" placeholder="Username">
+<input type="password" id="password" placeholder="Password">
 
-<button onclick="createAccount()">Create Account</button>
+<button id="createBtn" onclick="createAccount()">Create Account</button>
 <button onclick="login()">Login</button>
 </div>
 
@@ -102,10 +132,11 @@ function login(){
         user===localStorage.getItem("user") &&
         pass===localStorage.getItem("pass")
     ){
-        document.getElementById("auth").style.display="none";
+        document.getElementById("loginBox").style.display="none";
+
         document.getElementById("welcome").style.display="block";
         document.getElementById("welcome").innerHTML=
-        "Welcome, "+user+" 🚀";
+        "Welcome " + user + " 👋";
     }
     else{
         alert("Wrong Username or Password");
